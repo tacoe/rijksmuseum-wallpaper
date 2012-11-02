@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C4F42971642ED5F006C8533 /* rijksicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1C4F42961642ED5F006C8533 /* rijksicon.icns */; };
 		1CFDA3F31641BD610029DD1C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFDA3F21641BD610029DD1C /* Cocoa.framework */; };
 		1CFDA3FD1641BD610029DD1C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CFDA3FB1641BD610029DD1C /* InfoPlist.strings */; };
 		1CFDA3FF1641BD610029DD1C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFDA3FE1641BD610029DD1C /* main.m */; };
 		1CFDA4031641BD610029DD1C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1CFDA4011641BD610029DD1C /* Credits.rtf */; };
 		1CFDA4061641BD610029DD1C /* RBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFDA4051641BD610029DD1C /* RBAppDelegate.m */; };
 		1CFDA4091641BD610029DD1C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CFDA4071641BD610029DD1C /* MainMenu.xib */; };
+		1CFDA41A1641D5F40029DD1C /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 1CFDA4191641D5F40029DD1C /* readme.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C4F42961642ED5F006C8533 /* rijksicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = rijksicon.icns; sourceTree = "<group>"; };
 		1CFDA3EE1641BD610029DD1C /* Rijksbehang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rijksbehang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CFDA3F21641BD610029DD1C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1CFDA3F51641BD610029DD1C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -29,6 +32,7 @@
 		1CFDA4041641BD610029DD1C /* RBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RBAppDelegate.h; sourceTree = "<group>"; };
 		1CFDA4051641BD610029DD1C /* RBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBAppDelegate.m; sourceTree = "<group>"; };
 		1CFDA4081641BD610029DD1C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1CFDA4191641D5F40029DD1C /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 				1CFDA3F81641BD610029DD1C /* Rijksbehang */,
 				1CFDA3F11641BD610029DD1C /* Frameworks */,
 				1CFDA3EF1641BD610029DD1C /* Products */,
+				1CFDA4191641D5F40029DD1C /* readme.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +98,7 @@
 		1CFDA3F91641BD610029DD1C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1C4F42961642ED5F006C8533 /* rijksicon.icns */,
 				1CFDA3FA1641BD610029DD1C /* Rijksbehang-Info.plist */,
 				1CFDA3FB1641BD610029DD1C /* InfoPlist.strings */,
 				1CFDA3FE1641BD610029DD1C /* main.m */,
@@ -157,6 +163,8 @@
 				1CFDA3FD1641BD610029DD1C /* InfoPlist.strings in Resources */,
 				1CFDA4031641BD610029DD1C /* Credits.rtf in Resources */,
 				1CFDA4091641BD610029DD1C /* MainMenu.xib in Resources */,
+				1CFDA41A1641D5F40029DD1C /* readme.md in Resources */,
+				1C4F42971642ED5F006C8533 /* rijksicon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +306,7 @@
 				1CFDA40E1641BD610029DD1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
