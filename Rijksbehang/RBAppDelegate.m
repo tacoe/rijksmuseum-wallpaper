@@ -15,11 +15,16 @@ __strong NSStatusItem *statusitem;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    defaults = [NSUserDefaults standardUserDefaults];
+    
     [self populateCollections];
     [self activateStatusMenu];
     
     globalTimer = [NSTimer new];
+    refreshTimeout = 60*60;
+    
     [self setTimer];
+    [self downloadWallpaper];    
 }
 
 - (void)setTimer {
@@ -38,7 +43,7 @@ __strong NSStatusItem *statusitem;
 }
 
 -(IBAction)clickRefreshRate:(id)sender {
-    switch ([navigateButton selectedSegment])
+    switch ([refreshRateButton selectedSegment])
     {
         case 1:  refreshTimeout = 60*60; break;
         case 2:  refreshTimeout = 60*60*24; break;
@@ -50,8 +55,17 @@ __strong NSStatusItem *statusitem;
 }
 
 -(IBAction)clickNavigate:(id)sender {
-    currentIndex++;
-    if(currentIndex >= [currentCodes count]) currentIndex = 0;
+    switch ([navigateButton selectedSegment])
+    {
+        case 0:
+            currentIndex--;
+            if(currentIndex < 0) currentIndex = (int)[currentCodes count]-1;
+            break;
+        case 1:
+            currentIndex++;
+            if(currentIndex >= [currentCodes count]) currentIndex = 0;
+            break;
+    }
     [self downloadWallpaper];
 }
 
@@ -87,13 +101,18 @@ __strong NSStatusItem *statusitem;
                 @"SK-A-2344,SK-C-251,SK-A-2860,SK-A-1595", @"Johannes Vermeer",
                 @"SK-A-4691,SK-C-5,SK-C-216,SK-C-597,SK-A-4050,SK-C-6,SK-A-4885,SK-A-3981,SK-A-3340,SK-A-3982,SK-A-1935,SK-A-4674", @"Rembrandt van Rijn",
                 @"SK-A-1892,SK-A-1328,SK-A-1505,SK-A-2670,SK-A-3263,SK-A-3592", @"Impressionism",
+                @"SK-A-5002,SK-C-1702,SK-C-1703,RP-P-2008-90", @"Cobra",
+                @"RP-T-1980-10,SK-A-4644,SK-A-4868", @"Romantiek",
+                @"SK-A-670,SK-A-3746,SK-A-3120,SK-A-1320,SK-A-3247,SK-A-3286,SK-A-1718,SK-A-1705,SK-A-802,SK-A-1848,SK-A-123,SK-A-4644,SK-A-3949,SK-A-70,SK-A-1058,SK-A-1610,SK-A-2313,SK-A-321,SK-A-443,SK-C-109,SK-C-206,SK-A-317,SK-A-1774,SK-A-1935,SK-A-2290,SK-A-3230,SK-A-2298,SK-A-2264,SK-A-3072,SK-C-211,SK-A-1505,SK-A-2291,SK-A-4875,SK-A-1923,SK-A-2670,SK-A-2525,SK-A-2983,SK-A-3602,SK-A-3597,SK-A-347,SK-A-1293,SK-A-1299,SK-A-1892,SK-A-1196,SK-A-2355,SK-A-1775,SK-A-4133", @"Landscapes",
                 nil];
 
     [collectionDropdown removeAllItems];
-    [collectionDropdown addItemsWithTitles: [collectionDictionary allKeys]];
+    [collectionDropdown addItemsWithTitles: [[collectionDictionary allKeys]
+                                             sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
 
     [collectionDropdown selectItemAtIndex:0];
-    activeCollection = [[collectionDictionary allKeys] objectAtIndex:0];
+    activeCollection = [[[collectionDictionary allKeys]
+                        sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:0];
     [self loadCollection: activeCollection];
 }
 
@@ -122,6 +141,7 @@ __strong NSStatusItem *statusitem;
 
 - (void)downloadWallpaper {
     NSLog(@"Object index: %d", currentIndex);
+    [countLabel setStringValue:[NSString stringWithFormat:@"%d of %ld",currentIndex+1,[currentCodes count]]];
     filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:
                           [NSString stringWithFormat: @"%@.jpg",[currentCodes objectAtIndex:currentIndex]]];
     NSLog(@"Loading %@", filePath);
@@ -133,7 +153,8 @@ __strong NSStatusItem *statusitem;
     else
     {
         [self disableUI];
-        NSString *remotePath = [NSString stringWithFormat:@"https://www.rijksmuseum.nl/assetimage2.jsp?id=%@", code];
+        NSString *remotePath = [NSString stringWithFormat:@"https://www.rijksmuseum.nl/assetimage2.jsp?id=%@",
+                                [currentCodes objectAtIndex:currentIndex]];
         responseData = [NSMutableData data];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:remotePath]];
         

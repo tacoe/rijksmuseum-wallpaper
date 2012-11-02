@@ -15,6 +15,7 @@
     IBOutlet NSProgressIndicator *progressBar;
     IBOutlet NSSegmentedControl *navigateButton;
     IBOutlet NSSegmentedControl *refreshRateButton;
+    IBOutlet NSTextField *countLabel;
 }
 
 @property (assign) IBOutlet NSWindow *window;
@@ -26,13 +27,13 @@
 @end
 
 NSMutableData *responseData;
-NSString *code;
 NSString *filePath;
 NSDictionary *collectionDictionary;
 NSString *activeCollection;
 int currentIndex = 0;
 NSArray *currentCodes;
 NSTimer *globalTimer;
+NSUserDefaults *defaults;
 
 long totalFileSize = 0;
 long currentFileSize = 0;
