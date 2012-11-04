@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1C4F42971642ED5F006C8533 /* rijksicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1C4F42961642ED5F006C8533 /* rijksicon.icns */; };
+		1C6B7C04164687F20005CA9D /* rijksbadge.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C6B7C03164687F20005CA9D /* rijksbadge.png */; };
+		1C6B7C0916468D900005CA9D /* rijksicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1C6B7C0816468D900005CA9D /* rijksicon.icns */; };
+		1C6B7C0D1646B7BE0005CA9D /* rijks-big.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1C6B7C0C1646B7BE0005CA9D /* rijks-big.icns */; };
 		1CFDA3F31641BD610029DD1C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFDA3F21641BD610029DD1C /* Cocoa.framework */; };
 		1CFDA3FD1641BD610029DD1C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CFDA3FB1641BD610029DD1C /* InfoPlist.strings */; };
 		1CFDA3FF1641BD610029DD1C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFDA3FE1641BD610029DD1C /* main.m */; };
-		1CFDA4031641BD610029DD1C /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1CFDA4011641BD610029DD1C /* Credits.rtf */; };
 		1CFDA4061641BD610029DD1C /* RBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFDA4051641BD610029DD1C /* RBAppDelegate.m */; };
 		1CFDA4091641BD610029DD1C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CFDA4071641BD610029DD1C /* MainMenu.xib */; };
 		1CFDA41A1641D5F40029DD1C /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 1CFDA4191641D5F40029DD1C /* readme.md */; };
@@ -19,7 +21,10 @@
 
 /* Begin PBXFileReference section */
 		1C4F42961642ED5F006C8533 /* rijksicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = rijksicon.icns; sourceTree = "<group>"; };
-		1CFDA3EE1641BD610029DD1C /* Rijksbehang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rijksbehang.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C6B7C03164687F20005CA9D /* rijksbadge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rijksbadge.png; sourceTree = "<group>"; };
+		1C6B7C0816468D900005CA9D /* rijksicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = rijksicon.icns; sourceTree = "<group>"; };
+		1C6B7C0C1646B7BE0005CA9D /* rijks-big.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "rijks-big.icns"; sourceTree = "<group>"; };
+		1CFDA3EE1641BD610029DD1C /* Rijksmuseum Wallpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rijksmuseum Wallpaper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CFDA3F21641BD610029DD1C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1CFDA3F51641BD610029DD1C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		1CFDA3F61641BD610029DD1C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -28,7 +33,6 @@
 		1CFDA3FC1641BD610029DD1C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1CFDA3FE1641BD610029DD1C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1CFDA4001641BD610029DD1C /* Rijksbehang-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rijksbehang-Prefix.pch"; sourceTree = "<group>"; };
-		1CFDA4021641BD610029DD1C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		1CFDA4041641BD610029DD1C /* RBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RBAppDelegate.h; sourceTree = "<group>"; };
 		1CFDA4051641BD610029DD1C /* RBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBAppDelegate.m; sourceTree = "<group>"; };
 		1CFDA4081641BD610029DD1C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 		1CFDA3E31641BD610029DD1C = {
 			isa = PBXGroup;
 			children = (
+				1C6B7C0C1646B7BE0005CA9D /* rijks-big.icns */,
+				1C6B7C0816468D900005CA9D /* rijksicon.icns */,
 				1CFDA3F81641BD610029DD1C /* Rijksbehang */,
 				1CFDA3F11641BD610029DD1C /* Frameworks */,
 				1CFDA3EF1641BD610029DD1C /* Products */,
@@ -67,7 +73,7 @@
 		1CFDA3EF1641BD610029DD1C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1CFDA3EE1641BD610029DD1C /* Rijksbehang.app */,
+				1CFDA3EE1641BD610029DD1C /* Rijksmuseum Wallpaper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,12 +112,12 @@
 		1CFDA3F91641BD610029DD1C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1C6B7C03164687F20005CA9D /* rijksbadge.png */,
 				1C4F42961642ED5F006C8533 /* rijksicon.icns */,
 				1CFDA3FA1641BD610029DD1C /* Rijksbehang-Info.plist */,
 				1CFDA3FB1641BD610029DD1C /* InfoPlist.strings */,
 				1CFDA3FE1641BD610029DD1C /* main.m */,
 				1CFDA4001641BD610029DD1C /* Rijksbehang-Prefix.pch */,
-				1CFDA4011641BD610029DD1C /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -119,9 +125,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1CFDA3ED1641BD610029DD1C /* Rijksbehang */ = {
+		1CFDA3ED1641BD610029DD1C /* Rijksmuseum Wallpaper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1CFDA40C1641BD610029DD1C /* Build configuration list for PBXNativeTarget "Rijksbehang" */;
+			buildConfigurationList = 1CFDA40C1641BD610029DD1C /* Build configuration list for PBXNativeTarget "Rijksmuseum Wallpaper" */;
 			buildPhases = (
 				1CFDA3EA1641BD610029DD1C /* Sources */,
 				1CFDA3EB1641BD610029DD1C /* Frameworks */,
@@ -131,9 +137,9 @@
 			);
 			dependencies = (
 			);
-			name = Rijksbehang;
+			name = "Rijksmuseum Wallpaper";
 			productName = Rijksbehang;
-			productReference = 1CFDA3EE1641BD610029DD1C /* Rijksbehang.app */;
+			productReference = 1CFDA3EE1641BD610029DD1C /* Rijksmuseum Wallpaper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -158,7 +164,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1CFDA3ED1641BD610029DD1C /* Rijksbehang */,
+				1CFDA3ED1641BD610029DD1C /* Rijksmuseum Wallpaper */,
 			);
 		};
 /* End PBXProject section */
@@ -169,10 +175,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CFDA3FD1641BD610029DD1C /* InfoPlist.strings in Resources */,
-				1CFDA4031641BD610029DD1C /* Credits.rtf in Resources */,
 				1CFDA4091641BD610029DD1C /* MainMenu.xib in Resources */,
 				1CFDA41A1641D5F40029DD1C /* readme.md in Resources */,
 				1C4F42971642ED5F006C8533 /* rijksicon.icns in Resources */,
+				1C6B7C04164687F20005CA9D /* rijksbadge.png in Resources */,
+				1C6B7C0916468D900005CA9D /* rijksicon.icns in Resources */,
+				1C6B7C0D1646B7BE0005CA9D /* rijks-big.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,14 +205,6 @@
 				1CFDA3FC1641BD610029DD1C /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1CFDA4011641BD610029DD1C /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1CFDA4021641BD610029DD1C /* en */,
-			);
-			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
 		1CFDA4071641BD610029DD1C /* MainMenu.xib */ = {
@@ -278,6 +278,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rijksbehang/Rijksbehang-Prefix.pch";
 				INFOPLIST_FILE = "Rijksbehang/Rijksbehang-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -290,6 +291,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rijksbehang/Rijksbehang-Prefix.pch";
 				INFOPLIST_FILE = "Rijksbehang/Rijksbehang-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -307,7 +309,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1CFDA40C1641BD610029DD1C /* Build configuration list for PBXNativeTarget "Rijksbehang" */ = {
+		1CFDA40C1641BD610029DD1C /* Build configuration list for PBXNativeTarget "Rijksmuseum Wallpaper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1CFDA40D1641BD610029DD1C /* Debug */,

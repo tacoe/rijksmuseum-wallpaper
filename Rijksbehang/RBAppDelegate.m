@@ -10,32 +10,65 @@
 
 @implementation RBAppDelegate
 
-NSTimer *timer;
-__strong NSStatusItem *statusitem;
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    defaults = [NSUserDefaults standardUserDefaults];
-    
     [self populateCollections];
     [self activateStatusMenu];
-    
-    globalTimer = [NSTimer new];
-    refreshTimeout = 60*60;
-    
+    [self retrieveState];
     [self setTimer];
-    [self downloadWallpaper];    
+}
+
+- (void)storeState {
+    NSLog(@"Storing state");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:activeCollection forKey:@"activeCollection"];
+    [defaults setInteger:activeImageIndex forKey:@"currentIndex"];
+    [defaults setInteger:refreshTimeout forKey:@"refreshTimeout"];
+    [defaults synchronize];
+}
+
+- (void)retrieveState {
+    //retrieve state
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    activeCollection = [defaults objectForKey:@"activeCollection"];
+    if(activeCollection)
+    {
+        activeImageIndex = (int)[defaults integerForKey:@"currentIndex"];
+        refreshTimeout = (int)[defaults integerForKey:@"refreshTimeout"];
+    }
+    else
+    {
+        NSLog(@"first use - setting default, saving");
+        activeCollection = @"Taco's Favorites";
+        activeImageIndex = 0;
+        refreshTimeout = 60*60;
+        [self storeState];
+    }
+    NSLog(@"Restored state.activeCollection: %@, activeImageIndex: %d, refreshTimeout: %ld", activeCollection, activeImageIndex, refreshTimeout);
+
+    //update part of the UI
+    switch(refreshTimeout){
+        case SECONDS_HOUR: [refreshRateButton setSelectedSegment:1]; break;
+        case SECONDS_DAY: [refreshRateButton setSelectedSegment:2]; break;
+        case SECONDS_WEEK: [refreshRateButton setSelectedSegment:3]; break;
+        default: [refreshRateButton setSelectedSegment:0];
+    }
+    [collectionDropdown selectItemWithTitle:activeCollection];
+    [self loadCollection: activeCollection];
+    
+    //set wallpaper, which sets the remainder of the UI
+    [self setWallpaper];
 }
 
 - (void)setTimer {
+    if(!globalTimer) globalTimer = [NSTimer new];
+    [globalTimer invalidate];
     if(refreshTimeout > 0)
         globalTimer = [NSTimer scheduledTimerWithTimeInterval: refreshTimeout
                                              target: self
                                            selector: @selector(tick:)
                                            userInfo: NULL
                                             repeats: YES];
-    else
-        [timer invalidate];
 }
 
 - (IBAction)showPreferences:(id)sender {
@@ -45,12 +78,13 @@ __strong NSStatusItem *statusitem;
 -(IBAction)clickRefreshRate:(id)sender {
     switch ([refreshRateButton selectedSegment])
     {
-        case 1:  refreshTimeout = 60*60; break;
-        case 2:  refreshTimeout = 60*60*24; break;
-        case 3:  refreshTimeout = 60*60*24*7; break;
+        case 1:  refreshTimeout = SECONDS_HOUR; break;
+        case 2:  refreshTimeout = SECONDS_DAY; break;
+        case 3:  refreshTimeout = SECONDS_WEEK; break;
         default: refreshTimeout = 0; break;
     }
     [self setTimer];
+    [self storeState];
     NSLog(@"refreshrate set to %ld seconds", refreshTimeout);
 }
 
@@ -58,21 +92,44 @@ __strong NSStatusItem *statusitem;
     switch ([navigateButton selectedSegment])
     {
         case 0:
-            currentIndex--;
-            if(currentIndex < 0) currentIndex = (int)[currentCodes count]-1;
+            [self previousWallpaper];
             break;
         case 1:
-            currentIndex++;
-            if(currentIndex >= [currentCodes count]) currentIndex = 0;
+            [self nextWallpaper];
             break;
     }
-    [self downloadWallpaper];
+}
+
+-(IBAction) nextFromMenu:(id)sender {
+    [self nextWallpaper];
+}
+
+-(IBAction) previousFromMenu:(id)sender {
+    [self previousWallpaper];
+}
+
+-(void) nextWallpaper {
+    activeImageIndex++;
+    if(activeImageIndex >= [activeImageCodes count]) activeImageIndex = 0;
+    [self storeState];
+    [self setWallpaper];
+}
+
+
+-(void) previousWallpaper {
+    activeImageIndex--;
+    if(activeImageIndex < 0) activeImageIndex = (int)[activeImageCodes count]-1;
+    [self storeState];
+    [self setWallpaper];
 }
 
 -(IBAction)selectCollection:(id)sender {
     NSLog(@"select collection");
     activeCollection = [(NSMenuItem *)[collectionDropdown selectedItem] title];
+    activeImageIndex = 0;
+    [self storeState];
     [self loadCollection: activeCollection];
+    [self setWallpaper];
 }
 
 - (void)disableUI {
@@ -82,6 +139,10 @@ __strong NSStatusItem *statusitem;
     [collectionDropdown setEnabled:FALSE];
     [refreshRateButton setEnabled:FALSE];
     [navigateButton setEnabled:FALSE];
+    [nextItem setEnabled:FALSE];
+    [previousItem setEnabled:FALSE];
+    [quitItem setEnabled:FALSE];
+    isLoading = TRUE;
 }
 
 - (void)enableUI {
@@ -91,19 +152,28 @@ __strong NSStatusItem *statusitem;
     [collectionDropdown setEnabled:TRUE];
     [refreshRateButton setEnabled:TRUE];
     [navigateButton setEnabled:TRUE];
+    [nextItem setEnabled:TRUE];
+    [previousItem setEnabled:TRUE];
+    [quitItem setEnabled:TRUE];
+    isLoading = FALSE;
 }
 
 - (void)populateCollections {
     NSLog(@"Populate collections");
 
     collectionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                @"SK-A-4,SK-A-175,SK-A-2298,SK-A-3584,SK-A-3592,SK-A-4688,SK-A-4830,SK-A-4839,SK-A-4868,SK-C-5,SK-A-2382", @"Taco's Favorites",
+                @"SK-A-4868,SK-A-4,SK-A-175,SK-A-2298,SK-A-3592,SK-A-4688,SK-A-4830,SK-A-4839,SK-A-2382", @"Taco's Favorites",
                 @"SK-A-2344,SK-C-251,SK-A-2860,SK-A-1595", @"Johannes Vermeer",
                 @"SK-A-4691,SK-C-5,SK-C-216,SK-C-597,SK-A-4050,SK-C-6,SK-A-4885,SK-A-3981,SK-A-3340,SK-A-3982,SK-A-1935,SK-A-4674", @"Rembrandt van Rijn",
                 @"SK-A-1892,SK-A-1328,SK-A-1505,SK-A-2670,SK-A-3263,SK-A-3592", @"Impressionism",
                 @"SK-A-5002,SK-C-1702,SK-C-1703,RP-P-2008-90", @"Cobra",
-                @"RP-T-1980-10,SK-A-4644,SK-A-4868", @"Romantiek",
+                @"BK-1973-158,BK-1990-1,BK-BR-J-233,RP-P-1912-2395,RP-F-F20723", @"Art Nouveau",
+                @"RP-T-1980-10,SK-A-4644,SK-A-4868", @"Romanticism",
                 @"SK-A-670,SK-A-3746,SK-A-3120,SK-A-1320,SK-A-3247,SK-A-3286,SK-A-1718,SK-A-1705,SK-A-802,SK-A-1848,SK-A-123,SK-A-4644,SK-A-3949,SK-A-70,SK-A-1058,SK-A-1610,SK-A-2313,SK-A-321,SK-A-443,SK-C-109,SK-C-206,SK-A-317,SK-A-1774,SK-A-1935,SK-A-2290,SK-A-3230,SK-A-2298,SK-A-2264,SK-A-3072,SK-C-211,SK-A-1505,SK-A-2291,SK-A-4875,SK-A-1923,SK-A-2670,SK-A-2525,SK-A-2983,SK-A-3602,SK-A-3597,SK-A-347,SK-A-1293,SK-A-1299,SK-A-1892,SK-A-1196,SK-A-2355,SK-A-1775,SK-A-4133", @"Landscapes",
+                @"RP-P-1958-281,RP-P-1958-279,RP-P-1958-298,RP-P-1958-293,RP-P-1958-294,RP-P-1958-272",@"Katushika Hukosai",
+                @"BK-1963-101,BK-NM-88,BK-NM-13150,BK-NM-3888,AK-MAK-240,AK-MAK-187,AK-MAK-84,AK-RAK-2007-1-A,AK-RAK-2007-1-B",@"Masterpieces: Sculptures",
+                @"SK-A-4225,SK-A-188,SK-A-2249,SK-C-87,SK-A-3948,SK-A-2248,SK-A-2576,SK-A-240",@"Rococo: Paintings",
+                @"BK-16431,BK-16676,BK-17397,BK-1959-19,BK-1961-63,BK-1964-13,BK-1964-14-A",@"Rococo: Objects",
                 nil];
 
     [collectionDropdown removeAllItems];
@@ -117,9 +187,8 @@ __strong NSStatusItem *statusitem;
 }
 
 - (void)loadCollection:(NSString *)key {
-    currentIndex = 0;
-    currentCodes = [(NSString *)[collectionDictionary objectForKey:activeCollection] componentsSeparatedByString:@","];
-    [self downloadWallpaper];
+    activeImageCodes = [(NSString *)[collectionDictionary objectForKey:activeCollection] componentsSeparatedByString:@","];
+    NSLog(@"Loaded codes for collection %@", key);
 }
 
 - (void)activateStatusMenu {
@@ -136,25 +205,29 @@ __strong NSStatusItem *statusitem;
 
 - (void)tick:(NSTimer *)t {
     NSLog(@"TICK");
-    [self downloadWallpaper];
+    if(isLoading) return;
+
+    activeImageIndex++;
+    if(activeImageIndex >= [activeImageCodes count]) activeImageIndex = 0;
+    
+    [self setWallpaper];
 }
 
-- (void)downloadWallpaper {
-    NSLog(@"Object index: %d", currentIndex);
-    [countLabel setStringValue:[NSString stringWithFormat:@"%d of %ld",currentIndex+1,[currentCodes count]]];
+- (void)setWallpaper {
+    [countLabel setStringValue:[NSString stringWithFormat:@"%d of %ld",activeImageIndex+1,[activeImageCodes count]]];
     filePath = [NSTemporaryDirectory() stringByAppendingPathComponent:
-                          [NSString stringWithFormat: @"%@.jpg",[currentCodes objectAtIndex:currentIndex]]];
+                          [NSString stringWithFormat: @"%@.jpg",[activeImageCodes objectAtIndex:activeImageIndex]]];
     NSLog(@"Loading %@", filePath);
 
     if([[NSFileManager defaultManager] fileExistsAtPath: filePath])
     {
         [self setWallpaper:filePath];
     }
-    else
+    else if(!isLoading)
     {
         [self disableUI];
         NSString *remotePath = [NSString stringWithFormat:@"https://www.rijksmuseum.nl/assetimage2.jsp?id=%@",
-                                [currentCodes objectAtIndex:currentIndex]];
+                                [activeImageCodes objectAtIndex:activeImageIndex]];
         responseData = [NSMutableData data];
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:remotePath]];
         
@@ -164,7 +237,6 @@ __strong NSStatusItem *statusitem;
         else
             NSLog(@"Downloading...");
     }
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
