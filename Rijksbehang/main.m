@@ -2,7 +2,6 @@
 //  main.m
 //  Rijksbehang
 //
-//  Created by Taco Ekkel on 31-10-12.
 //  Copyright (c) 2012 Taco Ekkel. All rights reserved.
 //
 

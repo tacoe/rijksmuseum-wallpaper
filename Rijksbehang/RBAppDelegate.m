@@ -2,7 +2,6 @@
 //  RBAppDelegate.m
 //  Rijksbehang
 //
-//  Created by Taco Ekkel on 31-10-12.
 //  Copyright (c) 2012 Taco Ekkel. All rights reserved.
 //
 
@@ -307,12 +306,9 @@
 }
 
 
-- (Boolean)allowClipping:(NSURL *)imageFileURL
+- (Boolean)isLandscape:(NSURL *)imageFileURL
 {
-    return true;
-    // --- this is useful EXCEPT sometimes we do want portrait paintings fullscreen.
-    // --- find a way to indicate/override in settings.
-    
+    // Use CG... so we don't have to load the image just to get the size
     CGImageSourceRef imageSource = CGImageSourceCreateWithURL((CFURLRef)CFBridgingRetain(imageFileURL), NULL);
     if (imageSource == NULL) return FALSE;
     
@@ -331,9 +327,7 @@
     
     CFRelease(imagePropertiesDictionary);
     CFRelease(imageSource);
-    NSLog(@"Image dimensions: %d x %d px", w, h);
-    if(h > 0)
-        return(w > h);
+    if(h > 0) return(w > h);
     else return TRUE;
 }
 
@@ -370,26 +364,5 @@
         }
     }
 }
-
-- (void)enableLoginItemWithURL:(NSURL *)itemURL
-{
-	LSSharedFileListRef loginListRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-    
-	if (loginListRef) {
-		// Insert the item at the bottom of Login Items list.
-		LSSharedFileListItemRef loginItemRef = LSSharedFileListInsertItemURL(loginListRef,
-                                                                             kLSSharedFileListItemLast,
-                                                                             NULL,
-                                                                             NULL,
-                                                                             (CFURLRef)CFBridgingRetain(itemURL), 
-                                                                             NULL, 
-                                                                             NULL);		
-		if (loginItemRef) {
-			CFRelease(loginItemRef);
-		}
-		CFRelease(loginListRef);
-	}
-}
-
 
 @end
