@@ -32,12 +32,14 @@
 @end
 
 NSMutableData *responseData;
-NSString      *filePath;
+NSString      *pendingImagePath;
+NSString      *pendingImageOptions;
 NSDictionary  *collectionDictionary;
 NSString      *activeCollection = nil;
 int           activeImageIndex = 0;
 NSArray       *activeImageCodes;
 NSTimer       *globalTimer = nil;
+NSString      *storagePath = nil;
 Boolean       isLoading = FALSE;
 
 __strong NSStatusItem *statusitem; // make sure ARC doesn't toss it

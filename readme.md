@@ -2,9 +2,9 @@
 
 # Rijksmuseum Wallpaper
 
-A rainy Sunday OSX app to use the new image material made available for the launch of the amazing new www.rijksmuseum.nl site last week.
+A rainy Sunday OSX app to celebrate the new image material made available for the launch of the amazing new www.rijksmuseum.nl.
 
-All artwork and content provided by Rijksmuseum (under CC0).
+All artwork and content provided by Rijksmuseum (licensed under CC0).
 
 Application (c) 2012 by Taco Ekkel, licensed under CC-BY-SA (http://creativecommons.org/licenses/by-sa/3.0/).
 
@@ -23,9 +23,15 @@ Application (c) 2012 by Taco Ekkel, licensed under CC-BY-SA (http://creativecomm
 * (v) App icon
 * (v) Add next/prev to menu bar
 * (v) Remove about box
+* (v) Prevent quitting/changing when loading wallpaper
+* (v) Store wallpapers in a more persistent place
+* (v) Make window topmost on preference click
+* (v) Fix spinner alignment
+* (v) Basic multimonitor support
 * Change timer to date-check instead of running-time check (or check NSTimer survives sleep)
 * Start at launch option
-* App store version; signed executable
+* Signed executable
+* App store version
 
 1.1
 

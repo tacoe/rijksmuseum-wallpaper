@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1CFDA3ED1641BD610029DD1C"
-               BuildableName = "Rijksbehang.app"
+               BuildableName = "Rijksmuseum Wallpaper.app"
                BlueprintName = "Rijksmuseum Wallpaper"
                ReferencedContainer = "container:Rijksbehang.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1CFDA3ED1641BD610029DD1C"
-            BuildableName = "Rijksbehang.app"
+            BuildableName = "Rijksmuseum Wallpaper.app"
             BlueprintName = "Rijksmuseum Wallpaper"
             ReferencedContainer = "container:Rijksbehang.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1CFDA3ED1641BD610029DD1C"
-            BuildableName = "Rijksbehang.app"
+            BuildableName = "Rijksmuseum Wallpaper.app"
             BlueprintName = "Rijksmuseum Wallpaper"
             ReferencedContainer = "container:Rijksbehang.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1CFDA3ED1641BD610029DD1C"
-            BuildableName = "Rijksbehang.app"
+            BuildableName = "Rijksmuseum Wallpaper.app"
             BlueprintName = "Rijksmuseum Wallpaper"
             ReferencedContainer = "container:Rijksbehang.xcodeproj">
          </BuildableReference>
