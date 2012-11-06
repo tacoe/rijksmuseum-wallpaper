@@ -6,7 +6,7 @@ A rainy Sunday OSX app to celebrate the new image material made available for th
 
 All artwork and content provided by Rijksmuseum (licensed under CC0).
 
-Application (c) 2012 by Taco Ekkel, licensed under CC-BY-SA (http://creativecommons.org/licenses/by-sa/3.0/).
+Application (c) 2012 by Taco Ekkel, MIT licensed.
 
 ## Todo
 

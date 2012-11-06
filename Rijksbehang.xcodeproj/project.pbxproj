@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C0DEE3316492787002EE303 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1C0DEE3216492787002EE303 /* LICENSE */; };
 		1C4F42971642ED5F006C8533 /* rijksicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1C4F42961642ED5F006C8533 /* rijksicon.icns */; };
 		1C6B7C04164687F20005CA9D /* rijksbadge.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C6B7C03164687F20005CA9D /* rijksbadge.png */; };
 		1C6B7C0916468D900005CA9D /* rijksicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1C6B7C0816468D900005CA9D /* rijksicon.icns */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C0DEE3216492787002EE303 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1C4F42961642ED5F006C8533 /* rijksicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = rijksicon.icns; sourceTree = "<group>"; };
 		1C6B7C03164687F20005CA9D /* rijksbadge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rijksbadge.png; sourceTree = "<group>"; };
 		1C6B7C0816468D900005CA9D /* rijksicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = rijksicon.icns; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 		1CFDA3E31641BD610029DD1C = {
 			isa = PBXGroup;
 			children = (
+				1C0DEE3216492787002EE303 /* LICENSE */,
 				1C6B7C0C1646B7BE0005CA9D /* rijks-big.icns */,
 				1C6B7C0816468D900005CA9D /* rijksicon.icns */,
 				1CFDA3F81641BD610029DD1C /* Rijksbehang */,
@@ -181,6 +184,7 @@
 				1C6B7C04164687F20005CA9D /* rijksbadge.png in Resources */,
 				1C6B7C0916468D900005CA9D /* rijksicon.icns in Resources */,
 				1C6B7C0D1646B7BE0005CA9D /* rijks-big.icns in Resources */,
+				1C0DEE3316492787002EE303 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
