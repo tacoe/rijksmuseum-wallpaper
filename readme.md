@@ -28,6 +28,7 @@ Application (c) 2012 by Taco Ekkel, MIT licensed.
 * (v) Make window topmost on preference click
 * (v) Fix spinner alignment
 * (v) Basic multimonitor support
+* Never create foreground error messages when not active application
 * Change timer to date-check instead of running-time check (or check NSTimer survives sleep)
 * Start at launch option
 * Signed executable
