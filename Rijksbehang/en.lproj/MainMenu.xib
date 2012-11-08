@@ -204,6 +204,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{155, 18}, {325, 24}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSSegmentedCell" key="NSCell" id="670871769">

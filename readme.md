@@ -13,7 +13,7 @@ Application (c) 2012 by Taco Ekkel, MIT licensed.
 1.0
 
 * (v) Basic app framework, desktop setting
-* (v) Downloading, caching wallpapers
+* (v) Downloading, caching wallpapers.
 * (v) Menu bar icons, menus
 * (v) Preferences window
 * (v) Create/transfer curated collections
@@ -28,7 +28,10 @@ Application (c) 2012 by Taco Ekkel, MIT licensed.
 * (v) Make window topmost on preference click
 * (v) Fix spinner alignment
 * (v) Basic multimonitor support
+* (v) Removed 'Cobra' collection (turns out Rijksmuseum can't CC0 this)
 * Never create foreground error messages when not active application
+* Load collection definition from server at startup
+* Be robust against stored settings not matching current collection definition
 * Change timer to date-check instead of running-time check (or check NSTimer survives sleep)
 * Start at launch option
 * Signed executable
